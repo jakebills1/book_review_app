@@ -7,3 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+20.times do 
+  book = Book.create(title: Faker::Book.title, author: Faker::Book.author, genre: Faker::Book.genre)
+  5.times { Review.create(stars: rand(1..5), body: Faker::Lorem.paragraph, book_id: book.id)}
+end
