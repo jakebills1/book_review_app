@@ -29,11 +29,17 @@ class BooksController < ApplicationController
     render json: { message: "Book removed"}, status: :ok
   end
 
+  def form
+    @book = Book.new
+    render partial: "form"
+    
+  end
+
   private
     def set_book
       @book = Book.find(params[:id])
     end
     def book_params
-      params.require(:book).permit(:name, :author, :genre)
+      params.require(:book).permit(:title, :author, :genre)
     end
 end
