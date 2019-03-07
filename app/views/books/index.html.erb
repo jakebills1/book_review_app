@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="page-header">
+    <h1>Books</h1>
+    <hr />
+  </div>
+  <div class="dflex" style="display: flex;">
+    <div>
+      <ul id="book-list">
+        <% @books.each do |book|  %>
+          <li class="book-item" data-id="<%= book.id %>">
+            <%= book.title %> - <%= book.author %> - (<%= book.genre%>)
+          </li>
+        <% end %>
+
+      </ul>
+    </div>
+    <div id="review-list">
+      <h2>Reviews of Book</h2>
+      <ul id="reviews">
+      </ul>
+    </div>
+  </div>
+
+
+</div>

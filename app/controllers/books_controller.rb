@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :update, :destroy]
   def index
-    @books = Books.all
+    @books = Book.all
   end
 
   def show
