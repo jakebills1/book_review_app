@@ -80,7 +80,6 @@ $(document).ready( function(){
         var li = $("[data-id='" + id + "']")
         debugger
         $(li).replaceWith(book)
-        // bug here
         editingBook = null;
       } else {
         $("#book-list").append(book)
