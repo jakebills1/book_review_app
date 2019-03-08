@@ -5,6 +5,7 @@ class BooksController < ApplicationController
   end
 
   def show
+    render partial: 'book', locals: { book: book }
   end
 
   def create
@@ -30,7 +31,7 @@ class BooksController < ApplicationController
   end
 
   def form
-    @book = Book.new
+    @book = params[:id] ? Book.find(params[:id]) : Book.new
     render partial: "form"
     
   end
