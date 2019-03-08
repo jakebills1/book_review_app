@@ -27,9 +27,15 @@ $(document).ready( function(){
   $(document).on('submit', '#book-form form', function(event){
     event.preventDefault();
     var data = $(this).serializeArray();
+    var url = '/books';
+    var method = 'POST';
+    if (editingBook){
+      url = url + '/' + editingBook;
+      method = 'PUT'
+    }
     $.ajax({
-      url: '/books',
-      type: 'POST',
+      url: url,
+      type: method,
       dataType: 'JSON',
       data: data
     }).done( function(book) {
@@ -68,8 +74,24 @@ $(document).ready( function(){
       url: '/books/' + id,
       method: 'GET'
     }).done( function(book) {
-      $("#book-list").append(book)
+      if (editingBook){
+        var li = $("[data-id='" + id + "'")
+        $(li).replaceWith(book)
+        editingBook = null;
+      } else{
+        $("#book-list").append(book)
+      }
     })
   }
+  $(document).on("click", "#delete", function(){
+    var id = $(this).siblings('.book-item').data().id
+    $.ajax({
+      url: '/books/' + id,
+      type: "DELETE"
+    }).done( function(){
+      var row = $("[data-id='" + id + "'");
+      row.parent().remove('li');
+    })
+  })
   
 })

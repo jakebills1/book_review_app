@@ -5,7 +5,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    render partial: 'book', locals: { book: book }
+    render partial: 'book', locals: { book: @book }
   end
 
   def create
@@ -18,7 +18,7 @@ class BooksController < ApplicationController
   end
 
   def update
-    if @book.update
+    if @book.update(book_params)
       render json: @book
     else
       render_error(@book)
